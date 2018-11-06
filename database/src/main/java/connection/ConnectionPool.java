@@ -12,7 +12,7 @@ import java.sql.SQLException;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ConnectionPool {
 
-    private static DataSource dATASOURCE;
+    private static DataSource dataSource;
 
     static {
         initConnectionPool();
@@ -25,10 +25,10 @@ public final class ConnectionPool {
         poolProperties.setUsername(PropertyManager.get("db.user"));
         poolProperties.setPassword(PropertyManager.get("db.password"));
         poolProperties.setMaxActive(Integer.parseInt(PropertyManager.get("db.pool.size")));
-        dATASOURCE = new DataSource(poolProperties);
+        dataSource = new DataSource(poolProperties);
     }
 
     public static Connection getConnection() throws SQLException {
-        return dATASOURCE.getConnection();
+        return dataSource.getConnection();
     }
 }

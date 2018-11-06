@@ -23,10 +23,10 @@ public class BusinessCreateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Business business = Business.builder()
-                .name(req.getParameter("name"))
-                .unp(Integer.valueOf(req.getParameter("unp")))
-                .build();
+        Business business = new Business(
+                req.getParameter("name"),
+                Integer.valueOf(req.getParameter("unp"))
+        );
         Business created = BusinessDao.getInstance().create(business);
 
         resp.sendRedirect("/ibank/business-info?id=" + created.getId());
