@@ -7,6 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
@@ -30,9 +32,14 @@ public abstract class User extends BaseEntity<Long> {
     @Column(name = "password")
     private String password;
 
-    public User(String name, String loginName, String password) {
+    @Column(name = "role_id")
+    @Enumerated(EnumType.ORDINAL)
+    private Role role;
+
+    public User(String name, String loginName, String password, Role role) {
         this.name = name;
         this.loginName = loginName;
         this.password = password;
+        this.role = role;
     }
 }

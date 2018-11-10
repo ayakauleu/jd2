@@ -31,8 +31,4 @@ public class Card extends BaseEntity<Long> {
     @JoinColumn(name = "account_id")
     private CardAccount cardAccount;
 
-    public Card(String cardNumber, CardType cardType) {
-        this.cardNumber = cardNumber;
-        this.cardType = cardType;
-    }
 }

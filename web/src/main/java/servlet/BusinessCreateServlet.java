@@ -1,6 +1,6 @@
 package servlet;
 
-import dao.BusinessDao;
+import dao.BusinessDaoImpl;
 import model.Business;
 import util.JspPathUtil;
 
@@ -27,8 +27,8 @@ public class BusinessCreateServlet extends HttpServlet {
                 req.getParameter("name"),
                 Integer.valueOf(req.getParameter("unp"))
         );
-        Business created = BusinessDao.getInstance().create(business);
+        Long createdId = BusinessDaoImpl.getInstance().save(business);
 
-        resp.sendRedirect("/ibank/business-info?id=" + created.getId());
+        resp.sendRedirect("/ibank/business-info?id=" + createdId);
     }
 }

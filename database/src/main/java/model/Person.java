@@ -11,11 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
-
-
 
 @Getter
 @Setter
@@ -25,6 +24,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "person", schema = "ibank")
+@PrimaryKeyJoinColumn(name = "id")
 public class Person extends User {
 
     @Column(name = "phone")
@@ -38,7 +38,7 @@ public class Person extends User {
     private Set<Business> businesses = new HashSet<>();
 
     public Person(String phone, String name, String loginName, String password) {
-        super(name, loginName, password);
+        super(name, loginName, password, Role.CLIENT);
         this.phone = phone;
     }
 }

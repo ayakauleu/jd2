@@ -4,12 +4,12 @@ create table if not exists users (
   id bigserial primary key,
   loginname character varying(100) not null unique,
   password character varying(100)  not null,
-  name character varying(100) not null
+  name character varying(100) not null,
+  role_id integer not null
 );
 
 create table if not exists employee (
   id bigint primary key references users (id),
-  role_id integer,
   division_id integer
 );
 
@@ -45,14 +45,49 @@ create table if not exists card_type (
 create table if not exists card (
   id bigserial primary key,
   card_number character varying(16),
-  type_id integer references card_type(id),
+  type_id integer references card_type (id),
   account_id bigint references card_account (id)
 );
 
---ALTER TABLE ibank.business_person
---ADD CONSTRAINT business_person_person_id_fk
---FOREIGN KEY (person_id) REFERENCES person(id);
+
+/*
+create table if not exists operation (
+  id bigserial primary key,
+  card_id bigint references card (id),
+  operation_date date,
+  currcode integer references currency (currcode),
+  amount numeric(16, 2)
+);
+
+create table if not exists payment_types (
+  id serial primary key,
+  name character varying (100)
+);
+
+create table if not exists payment (
+  id bigint references operations (id),
+  payment_type_id integer references payment_type (id),
+  payment_params character varying (100)
+);
+
+create table if not exists transfer
+  id bigint references operations (id),
+  receiver_card_id bigint references card (id)
+);
+
+create table if not exists currency (
+  code integer primary key,
+  name character varying (100)
+);
+*/
+
+--alter table ibank.business_person
+--add constraint business_person_person_id_fk
+--foreign key (person_id) references person(id);
 
 --drop extension pgcrypto;
 --select encode(digest('test message', 'sha256'), 'hex') hash;
 
+select * from person p
+left join card_account a on a.person_id = p.id
+join card c on c.account_id = a.id;

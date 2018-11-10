@@ -7,6 +7,7 @@ import model.CardAccount;
 import model.CardType;
 import model.Employee;
 import model.Person;
+import model.Role;
 import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,7 +28,7 @@ public class SaveMany {
 
         session.beginTransaction();
 
-        User userAdmin = new Employee(1, 1, "Andrei Petrov", "apetrov", "123");
+        User userAdmin = new Employee("Andrei Petrov", "apetrov", "123", 1, Role.ACCOUNTER);
         Long userAdminId = (Long) session.save(userAdmin);
         session.evict(userAdmin);
         userAdmin = session.find(User.class, userAdminId);
@@ -45,15 +46,16 @@ public class SaveMany {
         business = session.find(Business.class, businessId);
 
         CardAccount cardAccount = new CardAccount("BYN", BigDecimal.ZERO, (Person) userClient);
-        cardAccount.getCards().add(new Card("1234567891234561", session.find(CardType.class, "1")));
-        cardAccount.getCards().add(new Card("1234567891234562", session.find(CardType.class, "2")));
-        cardAccount.getCards().add(new Card("1234567891234563", session.find(CardType.class, "3")));
-        cardAccount.getCards().add(new Card("1234567891234564", session.find(CardType.class, "4")));
         Long cardAccountId = (Long) session.save(cardAccount);
-     /*   session.flush();
+
+        session.save(Card.of("1234567891234561", session.find(CardType.class, 1), cardAccount));
+        session.save(Card.of("1234567891234562", session.find(CardType.class, 2), cardAccount));
+        session.save(Card.of("1234567891234563", session.find(CardType.class, 1 + 2), cardAccount));
+        session.save(Card.of("1234567891234564", session.find(CardType.class, 2 + 2), cardAccount));
+
+        /*session.flush();
         session.evict(cardAccount);
         cardAccount = session.find(CardAccount.class, cardAccountId);*/
-
 
         session.getTransaction().commit();
 

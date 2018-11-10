@@ -19,7 +19,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
-
 @Entity
 @Table(name = "card_account", schema = "ibank")
 public class CardAccount extends BaseEntity<Long> {
@@ -32,12 +31,12 @@ public class CardAccount extends BaseEntity<Long> {
     @JoinColumn(name = "person_id")
     private Person person;
 
+    @OneToMany(mappedBy = "cardAccount", cascade = CascadeType.ALL)
+    private Set<Card> cards = new HashSet<>();
+
     public CardAccount(String currency, BigDecimal rest, Person person) {
         this.currency = currency;
         this.rest = rest;
         this.person = person;
     }
-
-    @OneToMany(mappedBy = "cardAccount", cascade = CascadeType.ALL)
-    private Set<Card> cards = new HashSet<>();
 }
