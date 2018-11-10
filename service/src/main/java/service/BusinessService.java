@@ -1,6 +1,6 @@
 package service;
 
-import dao.BusinessDao;
+import dao.BusinessDaoImpl;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import model.Business;
@@ -8,11 +8,11 @@ import model.Business;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BusinessService {
 
-    private static final BusinessService INSTANCE = new BusinessService();
-
     public Business getById(Long id) {
-        return BusinessDao.getInstance().getById(id);
+        return (Business) BusinessDaoImpl.getInstance().find(id);
     }
+
+    private static final BusinessService INSTANCE = new BusinessService();
 
     public static BusinessService getInstance() {
         return INSTANCE;
