@@ -18,7 +18,6 @@ public class BusinessInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Business business = BusinessService.getInstance().getById(Long.valueOf(req.getParameter("id")));
         req.setAttribute("business", business);
-        System.out.println(business);
         getServletContext()
                 .getRequestDispatcher(JspPathUtil.get("business-info"))
                 .forward(req, resp);

@@ -20,7 +20,7 @@
         <mapping class="model.CardType"/>
         <mapping class="model.CardAccount"/>
         <mapping class="model.Card"/>
-
+        <mapping class="model.Payment"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->

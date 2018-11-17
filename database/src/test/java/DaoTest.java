@@ -15,7 +15,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -89,6 +88,7 @@ public class DaoTest {
 
         session.getTransaction().commit();
     }
+
 
 
   /*  @Test

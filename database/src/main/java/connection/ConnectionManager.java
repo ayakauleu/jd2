@@ -11,4 +11,8 @@ public class ConnectionManager {
     public static Session getSession() {
         return FACTORY.openSession();
     }
+
+    public static SessionFactory getFactory() {
+        return FACTORY;
+    }
 }
