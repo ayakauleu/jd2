@@ -7,7 +7,7 @@ public enum PaymentType {
     APARTMENT("APARTMENT"),
     ELECTRICITY("ELECTRICITY");
 
-    final String value;
+    private final String value;
 
     PaymentType(final String value) {
         this.value = value;

@@ -111,7 +111,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.0.0</version>
@@ -119,16 +119,18 @@
                     <execution>
                         <id>validate</id>
                         <phase>validate</phase>
-                        <database.config                       <configLocation>checkstyle.xml</configLocation>
+                        <configuration>
+                            <configLocation>checkstyle.xml</configLocation>
                             <encoding>UTF-8</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>false</failsOnError>
-                        </database.config                   <goals>
+                        </configuration>
+                        <goals>
                             <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin-->
+            </plugin>
         </plugins>
     </build>
 
