@@ -1,8 +1,8 @@
 package servlet;
 
-import dao.BusinessDaoImpl;
-import model.Business;
-import util.JspPathUtil;
+import database.dao.BusinessDaoImpl;
+import database.model.Business;
+import database.util.JspPathUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

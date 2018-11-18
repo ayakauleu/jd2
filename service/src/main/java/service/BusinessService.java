@@ -1,9 +1,9 @@
 package service;
 
-import dao.BusinessDaoImpl;
+import database.dao.BusinessDaoImpl;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import model.Business;
+import database.model.Business;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BusinessService {

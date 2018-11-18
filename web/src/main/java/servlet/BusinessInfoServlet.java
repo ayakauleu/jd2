@@ -1,8 +1,8 @@
 package servlet;
 
-import model.Business;
+import database.model.Business;
 import service.BusinessService;
-import util.JspPathUtil;
+import database.util.JspPathUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
