@@ -1,0 +1,25 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>My Custom Login Page</title>
+</head>
+<body style='margin:50px;'>
+<h2>My Custom Login Page</h2>
+<form th:action="@{/my-login}" th:method="post">
+    <!--<div style="color:red" th:if="${param.error != null}" th:text="Invalid username and password"></div>-->
+    <!--<div style="color:blue" th:if="${param.logout != null}" th:text="You have been logged out"></div>-->
+    <p>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username"/>
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"/>
+    </p>
+    <input type="submit">Login</input>
+</form>
+
+<br><br><a th:href="@{/signup}">Подключиться к дистанционному обслуживанию</a>
+
+</body>
+</html>

@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
-
 @Entity
 @Table(name = "card", schema = "ibank")
 public class Card extends BaseEntity<Long> {

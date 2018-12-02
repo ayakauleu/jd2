@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Grids</title>
+</head>
+<body>
+<div th:fragment="cards-grid">
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">Номер</th>
+            <th scope="col">Тип</th>
+            <th scope="col">Валюта</th>
+            <th scope="col">Остаток</th>
+        </tr>
+        <tr th:each="card: ${cards}">
+            <td th:text="${card.cardNumber}">number</td>
+            <td th:text="${card.cardType.typeName}">type</td>
+            <td th:text="${card.cardAccount.currency}">curr</td>
+            <td th:text="${card.cardAccount.rest}">rest</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

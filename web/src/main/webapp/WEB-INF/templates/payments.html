@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Payments filter</title>
+    <div th:insert="~{headers::bootstrap}"/>
+</head>
+<body>
+<div th:insert="~{headers::language}">
+
+</div>
+
+<form th:action="@{/payments}" th:method="post">
+
+    <input for="datefrom">
+    <input id="datefrom" type="date" value="${datefrom}">
+    </label> -
+    <label for="datetill">
+        <input id="datetill" type="date" value="${datetill}">
+    </label>
+    <input type="radio" name="type" value="0"> Transfer
+    <input type="radio" name="type" value="1" checked> Payment
+    <select name="currency" id="currency">
+        <option th:each="curr: ${currencies}"
+                th:value="${curr}"
+                th:text="${curr}">
+        </option>
+
+    </select>
+    <br>
+    <label for="limit"> Page length
+        <input type="text" name="limit" id="limit" th:value="${limit}">
+    </label>
+    <label for="offset"> Page number
+        <input type="text" name="offset" id="offset" th:value="${offset}">
+    </label>
+    <input type="submit" value="Display">
+</form>
+
+<br><br>
+<div>
+    <a th:each="payment :${payments}"
+       th:text="${payment.paymentDate} +
+        ${payment.paymentType} +
+        ${payment.currency} +
+        ${payment.amount} +
+        ${payment.params}"
+       th:href="@{/payment-info}">
+    </a><br>
+</div>
+</body>
+</html>
