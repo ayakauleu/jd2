@@ -86,17 +86,8 @@ values (51, 'USD', 14, '11.11.2018', 1, '+375291234567'),
 --drop extension pgcrypto;
 --select encode(digest('test message', 'sha256'), 'hex') hash;
 
-select *
+select c.*
 from person p
-       left join card_account a on a.person_id = p.id
-       join card c on c.account_id = a.id;
-
-select
-       payment0_.id as id1_6_,
-       payment0_.amount as amount2_6_,
-       payment0_.currency as currency3_6_,
-       payment0_.params as params4_6_,
-       payment0_.payment_date as payment_5_6_,
-       payment0_.payment_type_id as payment_6_6_
-from
-     ibank.payment payment0_
+left join card_account a on a.person_id = p.id
+join card c on c.account_id = a.id
+where p.id = :personId
